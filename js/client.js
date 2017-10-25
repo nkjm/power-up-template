@@ -1,5 +1,7 @@
 /* global TrelloPowerUp */
 
+var open = require('oauth-open');
+
 var LINE_CLIENT_ID = "1542687535";
 
 // we can access Bluebird Promises as follows
@@ -435,7 +437,11 @@ TrelloPowerUp.initialize({
     // RESTful API. Using the key/token pair, you can make requests on behalf of the authorized user.
 
     // In this case we'll open a popup to kick off the authorization flow.
-    location.href = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile'; // Check out public/authorize.html to see how to ask a user to auth
+    var auth_url = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile';
+    open(auth_url, function(err, code){
+      if (err) throw err;
+      console.log(code);
+    }); // Check out public/authorize.html to see how to ask a user to auth
   }
 });
 
