@@ -1,5 +1,7 @@
 /* global TrelloPowerUp */
 
+var LINE_CLIENT_ID = "1542687535";
+
 // we can access Bluebird Promises as follows
 var Promise = TrelloPowerUp.Promise;
 
@@ -408,17 +410,18 @@ TrelloPowerUp.initialize({
     // below determines what should happen when the user clicks "Authorize Account"
 
     // For instance, if your Power-Up requires a token to be set for the member you could do the following:
-    /*return t.get('member', 'private', 'token')
+    return t.get('member', 'private', 'token')
     .then(function(token){
       if(token){
         return { authorized: true };
       }
       return { authorized: false };
     });
-    */
+    /*
     return new TrelloPowerUp.Promise((resolve) =>
       resolve({ authorized: false })
     );
+    */
     // You can also return the object synchronously if you know the answer synchronously.
   },
   'show-authorization': function(t, options){
@@ -427,21 +430,16 @@ TrelloPowerUp.initialize({
 
     // If we want to ask the user to authorize our Power-Up to make full use of the Trello API
     // you'll need to add your API from trello.com/app-key below:
-    let trelloAPIKey = '';
+    //let trelloAPIKey = TRELLO_API_KEY;
     // This key will be used to generate a token that you can pass along with the API key to Trello's
     // RESTful API. Using the key/token pair, you can make requests on behalf of the authorized user.
 
     // In this case we'll open a popup to kick off the authorization flow.
-    if (trelloAPIKey) {
-      return t.popup({
-        title: 'My Auth Popup',
-        args: { apiKey: trelloAPIKey }, // Pass in API key to the iframe
-        url: './authorize.html', // Check out public/authorize.html to see how to ask a user to auth
-        height: 140,
-      });
-    } else {
-      console.log("🙈 Looks like you need to add your API key to the project!");
-    }
+    return t.popup({
+      title: 'LINE Login',
+      url: 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile', // Check out public/authorize.html to see how to ask a user to auth
+      height: 140,
+    });
   }
 });
 
