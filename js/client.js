@@ -435,11 +435,7 @@ TrelloPowerUp.initialize({
     // RESTful API. Using the key/token pair, you can make requests on behalf of the authorized user.
 
     // In this case we'll open a popup to kick off the authorization flow.
-    return t.popup({
-      title: 'LINE Login',
-      url: 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile', // Check out public/authorize.html to see how to ask a user to auth
-      height: 140,
-    });
+    location.href = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile'; // Check out public/authorize.html to see how to ask a user to auth
   }
 });
 
