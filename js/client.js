@@ -1,6 +1,6 @@
 /* global TrelloPowerUp */
 
-var open = require('oauth-open');
+import * as oauth_open from "oauth-open";
 
 var LINE_CLIENT_ID = "1542687535";
 
@@ -438,7 +438,7 @@ TrelloPowerUp.initialize({
 
     // In this case we'll open a popup to kick off the authorization flow.
     var auth_url = 'https://access.line.me/oauth2/v2.1/authorize?response_type=code&client_id=' + LINE_CLIENT_ID + '&redirect_uri=' + window.location.origin + '%2Fauth-success.html&state=12345&scope=openid%20profile';
-    open(auth_url, function(err, code){
+    oauth_open.open(auth_url, function(err, code){
       if (err) throw err;
       console.log(code);
     }); // Check out public/authorize.html to see how to ask a user to auth
