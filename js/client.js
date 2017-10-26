@@ -445,7 +445,7 @@ TrelloPowerUp.initialize({
     var redirect_uri = window.location.origin + "%2Fauth-success.html";
     var scope = "notify";
     var state = "dummy";
-    var auth_url = "https: //notify-bot.line.me/oauth/authorize?response_type=" + response_type + "&client_id=" + client_id + "&redirect_uri=" + recirect_uri + "&scope=" + scope + "&state=" + state;
+    var auth_url = "https: //notify-bot.line.me/oauth/authorize?response_type=" + response_type + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=" + scope + "&state=" + state;
 
     oauth_open.open(auth_url, function(err, code){
       if (err) throw err;
