@@ -443,7 +443,7 @@ TrelloPowerUp.initialize({
 
     var response_type = "code";
     var client_id = LINE_CLIENT_ID;
-    var redirect_uri = window.location.origin + "%2Fauth-success.html";
+    var redirect_uri = encodeURIComponent(window.location.origin + "/power-up-template/auth-success.html");
     var scope = "notify";
     var state = "dummy";
     var auth_url = "https://notify-bot.line.me/oauth/authorize?response_type=" + response_type + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=" + scope + "&state=" + state;
