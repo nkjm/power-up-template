@@ -2,7 +2,7 @@
 /* global TrelloPowerUp */
 
 var LINE_CLIENT_ID = "KmzGXl064KMgX61dLxM4XE";
-var oauth_open = require("oauth-open");
+var open = require("oauth-open");
 
 // we can access Bluebird Promises as follows
 var Promise = TrelloPowerUp.Promise;
@@ -448,7 +448,7 @@ TrelloPowerUp.initialize({
     var state = "dummy";
     var auth_url = "https: //notify-bot.line.me/oauth/authorize?response_type=" + response_type + "&client_id=" + client_id + "&redirect_uri=" + redirect_uri + "&scope=" + scope + "&state=" + state;
 
-    oauth_open.open(auth_url, function(err, code){
+    open(auth_url, function(err, code){
       if (err) throw err;
       console.log(code);
     }); // Check out public/authorize.html to see how to ask a user to auth
